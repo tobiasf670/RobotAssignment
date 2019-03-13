@@ -1,13 +1,11 @@
-package com.example.robotassignment
+package com.example.robotassignment.DataClass
 
-import android.util.Log
-
-class Robot(var postion : Position, var roomSize: RoomController) {
+class Robot(var position : Position, var roomSize: Room) {
 
 
 
 
-    fun route(commands: String) {
+    fun route(commands: String) : Boolean {
         if (validateInputString(commands)) {
             for (i in 0 until commands.length) {
                 when (commands.get(i).toLowerCase().toString()) {
@@ -17,6 +15,9 @@ class Robot(var postion : Position, var roomSize: RoomController) {
                     else -> println("Wrong input")
                 }
             }
+            return true
+        } else {
+            return false
         }
     }
 
@@ -37,62 +38,54 @@ class Robot(var postion : Position, var roomSize: RoomController) {
         return true
     }
 
-    fun validateRoute() {
-
-
-    }
-
     fun turnDirection( direction : String) {
 
 
-        when (this.postion.direction.toLowerCase()) {
+        when (this.position.direction.toLowerCase()) {
             "n" ->
                 if (direction.equals("l", ignoreCase = true)) {
                 // west
-                    this.postion.direction = "w"
+                    this.position.direction = "w"
                  } else {
                     // east
-                    this.postion.direction = "e"
+                    this.position.direction = "e"
                 }
             "s" ->
                 if (direction.equals("l", ignoreCase = true)) {
                     // east
-                    this.postion.direction = "e"
+                    this.position.direction = "e"
                 } else {
                     // west
-                    this.postion.direction = "w"
+                    this.position.direction = "w"
                 }
             "e" ->
                 if (direction.equals("l", ignoreCase = true)) {
                     // north
-                    this.postion.direction = "n"
+                    this.position.direction = "n"
                 } else {
                     // south
-                    this.postion.direction = "s"
+                    this.position.direction = "s"
                 }
             "w" ->
                 if (direction.equals("l", ignoreCase = true)) {
                     // south
-                    this.postion.direction = "s"
+                    this.position.direction = "s"
                 } else {
                     // North
-                    this.postion.direction = "n"
+                    this.position.direction = "n"
                 }
             else -> print("Wrong input")
         }
     }
 
     fun move(){
-        Log.d("Before Move", "" + this.postion)
-        when (this.postion.direction.toLowerCase()) {
-            "n" -> this.postion.x -= 1
-            "s" -> this.postion.x += 1
-            "e" -> this.postion.y += 1
-            "w" -> this.postion.y -= 1
+        when (this.position.direction.toLowerCase()) {
+            "n" -> this.position.x -= 1
+            "s" -> this.position.x += 1
+            "e" -> this.position.y += 1
+            "w" -> this.position.y -= 1
             else -> print("Wrong input")
         }
-
-        Log.d("After Move", "" + this.postion)
     }
 }
 
