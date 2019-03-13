@@ -2,9 +2,6 @@ package com.example.robotassignment.DataClass
 
 class Robot(var position : Position, var roomSize: Room) {
 
-
-
-
     fun route(commands: String) : Boolean {
         if (validateInputString(commands)) {
             for (i in 0 until commands.length) {
